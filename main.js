@@ -28,6 +28,7 @@ const app = express();
 
 const allowedOrigins = [
   "https://banes-lab.com",
+  "https://www.banes-lab.com",
   "https://ws.banes-lab.com",
   "http://localhost:3001",
 ];
@@ -161,7 +162,9 @@ io.on("connection", (socket) => {
     }
 
     // Append the email to the message if available.
-    const messageWithEmail = email ? `${content} (sent by ${email})` : content;
+    const messageWithEmail = email
+      ? `**\`🌐 ${email}:\`** ${content}`
+      : content;
 
     // Fetch and send the message to the desired channel.
     try {
