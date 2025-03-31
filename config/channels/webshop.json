@@ -1,0 +1,172 @@
+{
+  "categories": [
+    {
+      "name": "🏬 • Storefront",
+      "permissionKey": "publicReadOnly",
+      "channels": [
+        {
+          "key": "store_announcements",
+          "name": "🛍️•-store-updates",
+          "type": "GuildAnnouncement",
+          "topic": "Latest drops, sales and exclusive launches from our shop.",
+          "permissionKey": "publicReadOnly",
+          "webhook": {
+            "enabled": true,
+            "key": "webhook_store_announcements",
+            "name": "🛍️ Store Updates"
+          },
+          "role": {
+            "name": "Store Alerts",
+            "mentionable": true,
+            "color": "#38bdf8"
+          }
+        },
+        {
+          "key": "promotions",
+          "name": "💸•-promotions",
+          "type": "GuildText",
+          "topic": "Flash deals, seasonal sales, coupon codes, and more.",
+          "permissionKey": "publicReadOnly"
+        },
+        {
+          "key": "giveaways",
+          "name": "🎁•-giveaways",
+          "type": "GuildText",
+          "topic": "Participate in our shop giveaways and win exclusive prizes!",
+          "permissionKey": "readAndReactOnly"
+        }
+      ]
+    },
+    {
+      "name": "🧾 • Orders & Support",
+      "channels": [
+        {
+          "key": "order_support",
+          "name": "📦•-order-help",
+          "type": "GuildText",
+          "topic": "Track your order, resolve payment issues, or get shipping info.",
+          "permissionKey": "publicWrite"
+        },
+        {
+          "key": "ticket_support",
+          "name": "🎫•-support-tickets",
+          "type": "GuildText",
+          "topic": "Open a private support ticket with our team.",
+          "permissionKey": "customRoleOnly",
+          "role": {
+            "name": "Support Team",
+            "mentionable": false,
+            "color": "#22c55e"
+          }
+        },
+        {
+          "key": "faq",
+          "name": "❓•-faq",
+          "type": "GuildText",
+          "topic": "Answers to the most common customer questions.",
+          "permissionKey": "publicReadOnly"
+        }
+      ]
+    },
+    {
+      "name": "🧠 • Team & Operations",
+      "channels": [
+        {
+          "key": "team_chat",
+          "name": "🧠•-staff-lounge",
+          "type": "GuildText",
+          "topic": "Internal team discussions and workflow updates.",
+          "permissionKey": "staffOnly",
+          "role": {
+            "name": "Staff",
+            "mentionable": false,
+            "color": "#a855f7"
+          }
+        },
+        {
+          "key": "mod_logs",
+          "name": "📃•-mod-logs",
+          "type": "GuildText",
+          "topic": "Automated logs and moderation activities.",
+          "permissionKey": "modOnly"
+        },
+        {
+          "key": "inventory_updates",
+          "name": "📊•-stock-updates",
+          "type": "GuildText",
+          "topic": "Inventory notifications and warehouse reports.",
+          "permissionKey": "staffOnly"
+        }
+      ]
+    },
+    {
+      "name": "💬 • Community",
+      "channels": [
+        {
+          "key": "general_chat",
+          "name": "💬•-general-chat",
+          "type": "GuildText",
+          "topic": "Chat with the community, share reviews, ask questions.",
+          "permissionKey": "publicWrite"
+        },
+        {
+          "key": "product_reviews",
+          "name": "📝•-reviews",
+          "type": "GuildText",
+          "topic": "Customer product reviews and experience sharing.",
+          "permissionKey": "readAndReactOnly"
+        },
+        {
+          "key": "suggestions",
+          "name": "💡•-suggestions",
+          "type": "GuildText",
+          "topic": "Suggest features, products, or improvements.",
+          "permissionKey": "readAndReactOnly"
+        }
+      ]
+    },
+    {
+      "name": "🎤 • Voice Support & Lounge",
+      "channels": [
+        {
+          "key": "voice_support",
+          "name": "🎧 Voice Support",
+          "type": "GuildVoice",
+          "permissionKey": "customRoleOnly",
+          "role": {
+            "name": "Support Team",
+            "mentionable": false,
+            "color": "#22c55e"
+          }
+        },
+        {
+          "key": "vip_lounge",
+          "name": "🌟 VIP Lounge",
+          "type": "GuildVoice",
+          "permissionKey": "donatorOnly",
+          "role": {
+            "name": "VIP",
+            "mentionable": true,
+            "color": "#facc15"
+          }
+        }
+      ]
+    }
+  ],
+  "noCategory": [
+    {
+      "key": "welcome",
+      "name": "👋-welcome",
+      "type": "GuildText",
+      "topic": "Welcome to our shop! Read below to get started.",
+      "permissionKey": "publicReadOnly"
+    },
+    {
+      "key": "verify",
+      "name": "🔐-verify",
+      "type": "GuildText",
+      "topic": "Verify to gain full access and join the community.",
+      "permissionKey": "publicWrite"
+    }
+  ]
+}

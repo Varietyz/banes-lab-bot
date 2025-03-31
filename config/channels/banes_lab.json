@@ -1,0 +1,220 @@
+{
+  "categories": [
+    {
+      "name": "📣 • Announcements & Updates",
+      "permissionKey": "publicReadOnly",
+      "channels": [
+        {
+          "key": "site_updates",
+          "name": "🧪•-site-updates",
+          "type": "GuildAnnouncement",
+          "topic": "Automated push updates from banes-lab.com.",
+          "permissionKey": "publicReadOnly",
+          "webhook": {
+            "enabled": true,
+            "key": "webhook_site_updates",
+            "name": "🚀Site | Deploy Update"
+          },
+          "role": {
+            "name": "Site Updates",
+            "mentionable": true,
+            "color": "#38bdf8"
+          }
+        },
+        {
+          "key": "release_notes",
+          "name": "🚀•-release-notes",
+          "type": "GuildAnnouncement",
+          "topic": "Detailed changelogs for deployments, features, and fixes.",
+          "permissionKey": "publicReadOnly"
+        },
+        {
+          "key": "system_alerts",
+          "name": "⚠️•-system-alerts",
+          "type": "GuildAnnouncement",
+          "topic": "Critical alerts from bot, site, or integrations.",
+          "permissionKey": "staffOnly"
+        }
+      ]
+    },
+    {
+      "name": "🧠 • Projects & Portfolio",
+      "channels": [
+        {
+          "key": "dev_projects",
+          "name": "💻•-development",
+          "type": "GuildText",
+          "topic": "Showcases of open-source & client builds featured on the website.",
+          "permissionKey": "publicReadOnly",
+          "role": {
+            "name": "Developers",
+            "mentionable": true,
+            "color": "#6366f1"
+          },
+          "webhook": {
+            "enabled": true,
+            "key": "webhook_dev_projects",
+            "name": "📋Site | GitHub Project Update"
+          }
+        },
+        {
+          "key": "graphic_projects",
+          "name": "🎨•-design-gallery",
+          "type": "GuildText",
+          "topic": "Featured graphic/UX/UI designs synced with the Graphics section.",
+          "permissionKey": "publicReadOnly",
+          "role": {
+            "name": "Designers",
+            "mentionable": true,
+            "color": "#f472b6"
+          },
+          "webhook": {
+            "enabled": true,
+            "key": "webhook_graphics_gallery",
+            "name": "🎨Site | Graphics Upload"
+          }
+        },
+        {
+          "key": "feedback",
+          "name": "📝•-portfolio-feedback",
+          "type": "GuildText",
+          "topic": "Visitor thoughts, recruiter impressions, or project input.",
+          "permissionKey": "readAndReactOnly",
+          "role": {
+            "name": "Feedback Participants",
+            "mentionable": false,
+            "color": "#facc15"
+          }
+        }
+      ]
+    },
+    {
+      "name": "📈 • Live Interactivity",
+      "channels": [
+        {
+          "key": "analytics",
+          "name": "📊•-site-traffic",
+          "type": "GuildText",
+          "topic": "Live pings from website visitor activity or link events.",
+          "permissionKey": "staffOnly",
+          "webhook": {
+            "enabled": true,
+            "key": "webhook_site_analytics",
+            "name": "📈Site | Analytics Event"
+          }
+        },
+        {
+          "key": "browser_sessions",
+          "name": "🌐•-active-sessions",
+          "type": "GuildText",
+          "topic": "Tracked real-time browser sessions from web clients.",
+          "permissionKey": "staffOnly",
+          "webhook": {
+            "enabled": true,
+            "key": "webhook_browser_sessions",
+            "name": "🧪Site | Browser Session"
+          }
+        }
+      ]
+    },
+    {
+      "name": "🤝 • Collaboration Spaces",
+      "channels": [
+        {
+          "key": "collab_general",
+          "name": "🤝•-collaborators",
+          "type": "GuildText",
+          "topic": "Cross-functional discussion zone for collaborators.",
+          "permissionKey": "customRoleOnly",
+          "role": {
+            "name": "Collaborators",
+            "mentionable": true,
+            "color": "#4ade80"
+          }
+        },
+        {
+          "key": "client_lounge",
+          "name": "🧑‍💼•-client-lounge",
+          "type": "GuildText",
+          "topic": "Private lounge for client interaction.",
+          "permissionKey": "customRoleOnly",
+          "role": {
+            "name": "Clients",
+            "mentionable": false,
+            "color": "#0ea5e9"
+          }
+        }
+      ]
+    },
+    {
+      "name": "🤖 • Automation & Logs",
+      "permissionKey": "staffOnly",
+      "channels": [
+        {
+          "key": "bot_logs",
+          "name": "📄•-bot-logs",
+          "type": "GuildText",
+          "topic": "Banebot logs including commands and errors.",
+          "permissionKey": "staffOnly"
+        },
+        {
+          "key": "database_logs",
+          "name": "🗃️•-db-activity",
+          "type": "GuildText",
+          "topic": "Database reads/writes, query stats, and schema updates.",
+          "permissionKey": "staffOnly"
+        },
+        {
+          "key": "monitoring",
+          "name": "🔍•-monitoring",
+          "type": "GuildText",
+          "topic": "Health checks, uptime pings, and performance logs.",
+          "permissionKey": "staffOnly"
+        }
+      ]
+    },
+    {
+      "name": "🎤 • Voice & Stream Zones",
+      "channels": [
+        {
+          "key": "afk_lounge",
+          "name": "😴 AFK Zone",
+          "type": "GuildVoice",
+          "permissionKey": "voiceReadNoJoin"
+        },
+        {
+          "key": "collab_lounge",
+          "name": "🤝 Collab Calls",
+          "type": "GuildVoice",
+          "permissionKey": "customRoleOnly",
+          "role": {
+            "name": "Collaborators",
+            "mentionable": true,
+            "color": "#4ade80"
+          }
+        }
+      ]
+    }
+  ],
+  "noCategory": [
+    {
+      "key": "welcome",
+      "name": "👋-welcome",
+      "type": "GuildText",
+      "topic": "Start here: what this server is, what’s on the site, and how to connect.",
+      "permissionKey": "publicReadOnly"
+    },
+    {
+      "key": "connect",
+      "name": "🔗-connect",
+      "type": "GuildText",
+      "topic": "Join the conversation, sync your data, or schedule a consult.",
+      "permissionKey": "publicReadOnly",
+      "role": {
+        "name": "Clients",
+        "mentionable": false,
+        "color": "#facc15"
+      }
+    }
+  ]
+}

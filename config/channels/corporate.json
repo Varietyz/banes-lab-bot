@@ -1,0 +1,228 @@
+{
+  "categories": [
+    {
+      "name": "📣 • Announcements & Updates",
+      "permissionKey": "publicReadOnly",
+      "channels": [
+        {
+          "key": "executive_announcements",
+          "name": "📢•-executive-updates",
+          "type": "GuildAnnouncement",
+          "topic": "Official announcements from executive leadership.",
+          "permissionKey": "publicReadOnly",
+          "role": {
+            "name": "Executives",
+            "mentionable": true,
+            "color": "#e11d48"
+          }
+        },
+        {
+          "key": "general_announcements",
+          "name": "📣•-general-announcements",
+          "type": "GuildAnnouncement",
+          "topic": "Company-wide news, events, and internal notices.",
+          "permissionKey": "publicReadOnly"
+        },
+        {
+          "key": "policy_updates",
+          "name": "📄•-policy-updates",
+          "type": "GuildAnnouncement",
+          "topic": "HR policies and procedural updates.",
+          "permissionKey": "staffOnly"
+        }
+      ]
+    },
+
+    {
+      "name": "🏢 • Departments",
+      "channels": [
+        {
+          "key": "eng_team",
+          "name": "🛠️•-engineering",
+          "type": "GuildText",
+          "topic": "Development, systems, and architecture discussions.",
+          "permissionKey": "teamOnly",
+          "role": {
+            "name": "Engineering",
+            "mentionable": true,
+            "color": "#4f46e5"
+          }
+        },
+        {
+          "key": "design_team",
+          "name": "🎨•-design",
+          "type": "GuildText",
+          "topic": "UI/UX, product design, brand visuals & prototyping.",
+          "permissionKey": "designerOnly",
+          "role": {
+            "name": "Design",
+            "mentionable": true,
+            "color": "#ec4899"
+          }
+        },
+        {
+          "key": "marketing_team",
+          "name": "📈•-marketing",
+          "type": "GuildText",
+          "topic": "Campaign planning, branding, and content strategies.",
+          "permissionKey": "teamOnly",
+          "role": {
+            "name": "Marketing",
+            "mentionable": true,
+            "color": "#f97316"
+          }
+        },
+        {
+          "key": "sales_team",
+          "name": "💰•-sales",
+          "type": "GuildText",
+          "topic": "Sales leads, CRM coordination, and KPIs.",
+          "permissionKey": "teamOnly",
+          "role": {
+            "name": "Sales",
+            "mentionable": true,
+            "color": "#22c55e"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "📊 • Analytics & Intelligence",
+      "channels": [
+        {
+          "key": "product_analytics",
+          "name": "📊•-product-insights",
+          "type": "GuildText",
+          "topic": "Engagement, retention, and product performance analytics.",
+          "permissionKey": "staffOnly",
+          "webhook": {
+            "enabled": true,
+            "key": "webhook_product_insights",
+            "name": "📊 Product Insight Stream"
+          }
+        },
+        {
+          "key": "growth_data",
+          "name": "📈•-growth-metrics",
+          "type": "GuildText",
+          "topic": "Traffic sources, conversions, acquisition funnels.",
+          "permissionKey": "staffOnly",
+          "webhook": {
+            "enabled": true,
+            "key": "webhook_growth_metrics",
+            "name": "📈 Growth Data Feed"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "🤝 • External Collaboration",
+      "channels": [
+        {
+          "key": "client_support",
+          "name": "🧑‍💼•-client-support",
+          "type": "GuildText",
+          "topic": "Direct communication channel with clients & partners.",
+          "permissionKey": "customRoleOnly",
+          "role": {
+            "name": "Clients",
+            "mentionable": false,
+            "color": "#0ea5e9"
+          }
+        },
+        {
+          "key": "vendor_relations",
+          "name": "📦•-vendors",
+          "type": "GuildText",
+          "topic": "Dedicated space for external vendor communication.",
+          "permissionKey": "customRoleOnly",
+          "role": {
+            "name": "Vendors",
+            "mentionable": false,
+            "color": "#a78bfa"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "🛠️ • Infrastructure & Logs",
+      "permissionKey": "staffOnly",
+      "channels": [
+        {
+          "key": "infra_status",
+          "name": "🔧•-infra-status",
+          "type": "GuildText",
+          "topic": "Live system uptime and performance logs.",
+          "permissionKey": "staffOnly"
+        },
+        {
+          "key": "error_reports",
+          "name": "❗•-error-logs",
+          "type": "GuildText",
+          "topic": "Bot logs, backend stacktraces, and error alerts.",
+          "permissionKey": "staffOnly"
+        },
+        {
+          "key": "build_webhooks",
+          "name": "🔁•-build-webhooks",
+          "type": "GuildText",
+          "topic": "Auto-generated logs from GitHub actions or CI/CD flows.",
+          "permissionKey": "staffOnly",
+          "webhook": {
+            "enabled": true,
+            "key": "webhook_ci_notifications",
+            "name": "🔁 CI/CD Notifications"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "🎤 • Calls & Syncs",
+      "channels": [
+        {
+          "key": "daily_standup",
+          "name": "📅 Daily Stand-up",
+          "type": "GuildVoice",
+          "permissionKey": "staffOnly"
+        },
+        {
+          "key": "client_meeting_room",
+          "name": "🤝 Client Room",
+          "type": "GuildVoice",
+          "permissionKey": "customRoleOnly",
+          "role": {
+            "name": "Clients",
+            "mentionable": false,
+            "color": "#0ea5e9"
+          }
+        },
+        {
+          "key": "exec_sync",
+          "name": "🏛 Executive Sync",
+          "type": "GuildVoice",
+          "permissionKey": "staffOnly"
+        }
+      ]
+    }
+  ],
+  "noCategory": [
+    {
+      "key": "start_here",
+      "name": "👋-start-here",
+      "type": "GuildText",
+      "topic": "Welcome to the workspace — company orientation and useful links.",
+      "permissionKey": "publicReadOnly"
+    },
+    {
+      "key": "contact_admin",
+      "name": "📬-contact-admin",
+      "type": "GuildText",
+      "topic": "For support, suggestions, and questions to administrators.",
+      "permissionKey": "publicWrite"
+    }
+  ]
+}

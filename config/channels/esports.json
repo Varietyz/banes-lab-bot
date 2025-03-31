@@ -1,0 +1,196 @@
+{
+  "categories": [
+    {
+      "name": "🎮 • Official Info",
+      "permissionKey": "publicReadOnly",
+      "channels": [
+        {
+          "key": "announcements",
+          "name": "📢•-announcements",
+          "type": "GuildAnnouncement",
+          "topic": "Global esports updates, events, and organization-wide news.",
+          "permissionKey": "publicReadOnly"
+        },
+        {
+          "key": "rules",
+          "name": "⚖️•-rules",
+          "type": "GuildText",
+          "topic": "Code of conduct, team policies, and competition terms.",
+          "permissionKey": "readAndReactOnly"
+        },
+        {
+          "key": "roles",
+          "name": "🏋️•-role-selection",
+          "type": "GuildText",
+          "topic": "Choose your game roles to unlock specific channels.",
+          "permissionKey": "publicWrite"
+        }
+      ]
+    },
+    {
+      "name": "📈 • Organization",
+      "channels": [
+        {
+          "key": "staff_chat",
+          "name": "💼•-staff-chat",
+          "type": "GuildText",
+          "topic": "Internal operations, planning, and administrative talk.",
+          "permissionKey": "staffOnly",
+          "role": {
+            "name": "Staff",
+            "mentionable": false,
+            "color": "#a855f7"
+          }
+        },
+        {
+          "key": "moderation_logs",
+          "name": "📃•-mod-logs",
+          "type": "GuildText",
+          "topic": "Mod actions, audit logs, and rule enforcement reports.",
+          "permissionKey": "modOnly"
+        }
+      ]
+    },
+    {
+      "name": "📊 • Team Hub",
+      "channels": [
+        {
+          "key": "team_announcements",
+          "name": "📰•-team-news",
+          "type": "GuildAnnouncement",
+          "topic": "Updates, strategies, and travel schedules.",
+          "permissionKey": "teamOnly",
+          "role": {
+            "name": "Team Players",
+            "mentionable": true,
+            "color": "#0ea5e9"
+          }
+        },
+        {
+          "key": "strategy_room",
+          "name": "📝•-strategy-room",
+          "type": "GuildText",
+          "topic": "Scrim results, team tactics, and VOD reviews.",
+          "permissionKey": "teamOnly"
+        },
+        {
+          "key": "coaches_lounge",
+          "name": "🎮•-coaching",
+          "type": "GuildText",
+          "topic": "Coach-to-player coordination and feedback loops.",
+          "permissionKey": "customRoleOnly",
+          "role": {
+            "name": "Coaches",
+            "mentionable": false,
+            "color": "#16a34a"
+          }
+        }
+      ]
+    },
+    {
+      "name": "🌟 • Game Channels",
+      "channels": [
+        {
+          "key": "valorant",
+          "name": "🎮•-valorant",
+          "type": "GuildText",
+          "topic": "Team LFTs, scrims, patch notes, agent picks.",
+          "permissionKey": "customRoleOnly",
+          "role": {
+            "name": "Valorant",
+            "mentionable": true,
+            "color": "#ef4444"
+          }
+        },
+        {
+          "key": "league",
+          "name": "🌿•-league-of-legends",
+          "type": "GuildText",
+          "topic": "Champion builds, LCS news, clash prep.",
+          "permissionKey": "customRoleOnly",
+          "role": {
+            "name": "League",
+            "mentionable": true,
+            "color": "#10b981"
+          }
+        },
+        {
+          "key": "csgo",
+          "name": "🔫•-cs2",
+          "type": "GuildText",
+          "topic": "Matchmaking, strategy discussion, clutch reviews.",
+          "permissionKey": "customRoleOnly",
+          "role": {
+            "name": "CS2",
+            "mentionable": true,
+            "color": "#f97316"
+          }
+        }
+      ]
+    },
+    {
+      "name": "🪙 • Voice & Scrims",
+      "channels": [
+        {
+          "key": "scrim_voice",
+          "name": "🎮 Scrim Room",
+          "type": "GuildVoice",
+          "permissionKey": "teamOnly"
+        },
+        {
+          "key": "coach_review",
+          "name": "👩‍🏫 Coach Review",
+          "type": "GuildVoice",
+          "permissionKey": "customRoleOnly",
+          "role": {
+            "name": "Coaches",
+            "mentionable": false,
+            "color": "#16a34a"
+          }
+        }
+      ]
+    },
+    {
+      "name": "📚 • Community & Fans",
+      "channels": [
+        {
+          "key": "general_chat",
+          "name": "💬•-general-chat",
+          "type": "GuildText",
+          "topic": "Talk with fans, players, and other community members.",
+          "permissionKey": "publicWrite"
+        },
+        {
+          "key": "fan_art",
+          "name": "🎨•-fan-art",
+          "type": "GuildText",
+          "topic": "Community art and fan creations.",
+          "permissionKey": "readAndReactOnly"
+        },
+        {
+          "key": "giveaways",
+          "name": "🎉•-giveaways",
+          "type": "GuildText",
+          "topic": "Claim your prizes, enter raffles, and seasonal promos.",
+          "permissionKey": "readAndReactOnly"
+        }
+      ]
+    }
+  ],
+  "noCategory": [
+    {
+      "key": "welcome",
+      "name": "👋-welcome",
+      "type": "GuildText",
+      "topic": "Welcome to the official server. Pick your game roles below!",
+      "permissionKey": "publicReadOnly"
+    },
+    {
+      "key": "verify",
+      "name": "🔐-verify",
+      "type": "GuildText",
+      "topic": "Verify to gain full access to the server.",
+      "permissionKey": "publicWrite"
+    }
+  ]
+}

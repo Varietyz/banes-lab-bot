@@ -396,3 +396,12 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+.env
+package.json
+package-lock.json
+*.db-wal
+*.db-shm
+*.db
+*.sqlite-wal
+*.sqlite
+*.sqlite-shm
