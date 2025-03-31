@@ -12,7 +12,7 @@ const initializeMainTables = async () => {
     await db.initializationPromise;
 
     const tables = {
-      // Users table: stores user credentials and basic info.
+      // Users table: use a UUID or custom-generated string for user_id
       users: `
         user_id TEXT PRIMARY KEY,
         username TEXT NOT NULL,
@@ -20,7 +20,7 @@ const initializeMainTables = async () => {
         password_hash TEXT NOT NULL,
         created_at INTEGER DEFAULT (strftime('%s','now'))
       `,
-      // Sessions table: stores session tokens for user login sessions.
+      // Sessions table: tracks active login sessions
       user_sessions: `
         session_id TEXT PRIMARY KEY,
         user_id TEXT NOT NULL,
@@ -29,7 +29,7 @@ const initializeMainTables = async () => {
         expires_at INTEGER,
         FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
       `,
-      // Profiles table: optional, storing additional profile data.
+      // Profiles table: PLACEHOLDER, storing additional profile data.
       user_profiles: `
         user_id TEXT PRIMARY KEY,
         display_name TEXT,
