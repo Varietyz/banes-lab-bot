@@ -37,6 +37,21 @@ const initializeMainTables = async () => {
         avatar_url TEXT,
         FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
       `,
+      user_channels: `
+        user_id TEXT PRIMARY KEY,
+        email TEXT NOT NULL,
+        channel_id TEXT NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      `,
+      messages_queue: `
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT NOT NULL,
+  channel_id TEXT NOT NULL,
+  content TEXT NOT NULL,
+  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+  delivered BOOLEAN DEFAULT 0,
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+      `,
     };
 
     for (const [table, schema] of Object.entries(tables)) {

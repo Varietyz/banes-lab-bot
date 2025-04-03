@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const db = require("../modules/utils/essentials/dbUtils");
 const logger = require("../modules/utils/essentials/logger");
 const { v4: uuidv4 } = require("uuid");
+const createDiscordChannelForUser = require("../modules/services/webUtils/createChannelForUser");
 
 const router = express.Router();
 const SALT_ROUNDS = 10;
@@ -25,18 +26,19 @@ router.post("/login", async (req, res) => {
   }
 
   try {
-    // Log query execution attempt
     logger.debug(`Executing query to fetch user by email: ${email}`);
     let result = await db.getOne("SELECT * FROM users WHERE email = ?", [
       email,
     ]);
     logger.debug("Query result for user fetch:", result);
 
-    // If result is an array (shouldn't be with getOne, but checking as precaution)
     if (Array.isArray(result)) result = result[0];
 
-    // Auto-registration – consider separating this in production
+    let isNewUser = false;
+
+    // Auto-registration
     if (!result) {
+      isNewUser = true;
       logger.info(`🆕 Creating new user for email: ${email}`);
       const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
       const userId = uuidv4();
@@ -55,7 +57,9 @@ router.post("/login", async (req, res) => {
 
     if (!result || !result.password_hash) {
       logger.warn(`❌ User not found or invalid for email: ${email}`);
-      return res.status(401).json({ message: "Invalid credentials" });
+      return res
+        .status(401)
+        .json({ message: "❌ User not found or invalid for email" });
     }
 
     // Validate password
@@ -65,7 +69,7 @@ router.post("/login", async (req, res) => {
     const valid = await bcrypt.compare(password, result.password_hash);
     if (!valid) {
       logger.warn(`❌ Password mismatch for user: ${result.username}`);
-      return res.status(401).json({ message: "Invalid credentials" });
+      return res.status(401).json({ message: "❌ Password mismatch" });
     }
 
     // Issue JWT token
@@ -88,8 +92,34 @@ router.post("/login", async (req, res) => {
       domain: process.env.COOKIE_DOMAIN || ".banes-lab.com",
     });
 
-    logger.info(`✅ Token issued for user: ${result.username}`);
-    res.status(200).json({ token });
+    logger.info(
+      `✅ Token issued for user: ${result.username} (userId: ${result.user_id})`
+    );
+
+    let channel = await db.getOne(
+      "SELECT channel_id FROM user_channels WHERE email = ?",
+      [email]
+    );
+
+    if (!channel) {
+      logger.debug(`Creating Discord channel for user ${email}`);
+      const newChannel = await createDiscordChannelForUser(email);
+
+      if (newChannel && newChannel.id) {
+        await db.runQuery(
+          "INSERT INTO user_channels (user_id, email, channel_id) VALUES (?, ?, ?)",
+          [result.user_id, email, newChannel.id]
+        );
+        channel = { channel_id: newChannel.id };
+      }
+    }
+
+    res.status(200).json({
+      token,
+      userId: result.user_id,
+      channelId: channel.channel_id,
+      accountConfirmed: !isNewUser,
+    });
   } catch (error) {
     logger.error(`🚨 Login error: ${error.message}`, { error });
     res.status(500).json({ message: "Server error" });

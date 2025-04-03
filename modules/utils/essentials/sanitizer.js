@@ -1,6 +1,6 @@
 // sanitizer.js
-const validator = require('validator');
-const { logger } = require('../../../main');
+const validator = require("validator");
+const logger = require("../essentials/logger");
 
 /**
  * Sanitize any user input in the interaction.
@@ -16,8 +16,8 @@ const { logger } = require('../../../main');
 function sanitizeInteraction(interaction) {
   // For Slash Commands:
   if (interaction.isCommand() && interaction.options?.data) {
-    interaction.options.data.forEach(option => {
-      if (typeof option.value === 'string') {
+    interaction.options.data.forEach((option) => {
+      if (typeof option.value === "string") {
         // Escape harmful characters.
         option.value = validator.escape(option.value);
       }
@@ -27,8 +27,8 @@ function sanitizeInteraction(interaction) {
   // For Modal Submissions:
   if (interaction.isModalSubmit() && interaction.fields) {
     // interaction.fields.fields is a collection of submitted fields.
-    interaction.fields.fields.forEach(field => {
-      if (typeof field.value === 'string') {
+    interaction.fields.fields.forEach((field) => {
+      if (typeof field.value === "string") {
         field.value = validator.escape(field.value);
       }
     });
@@ -38,7 +38,7 @@ function sanitizeInteraction(interaction) {
   // Typically, autocomplete interactions have a "focused" value containing user input.
   if (interaction.isAutocomplete() && interaction.options) {
     const focused = interaction.options.getFocused();
-    if (typeof focused === 'string') {
+    if (typeof focused === "string") {
       // Attach a sanitized version for use in your autocomplete handler.
       interaction.sanitizedFocusedValue = validator.escape(focused);
     }
@@ -47,8 +47,8 @@ function sanitizeInteraction(interaction) {
   // For String Select Menus:
   // The values array contains the user-selected option values.
   if (interaction.isStringSelectMenu() && Array.isArray(interaction.values)) {
-    interaction.values = interaction.values.map(value =>
-      typeof value === 'string' ? validator.escape(value) : value
+    interaction.values = interaction.values.map((value) =>
+      typeof value === "string" ? validator.escape(value) : value
     );
   }
 
@@ -60,8 +60,8 @@ function sanitizeInteraction(interaction) {
     interaction.isMentionableSelectMenu()
   ) {
     if (Array.isArray(interaction.values)) {
-      interaction.values = interaction.values.map(value =>
-        typeof value === 'string' ? validator.escape(value) : value
+      interaction.values = interaction.values.map((value) =>
+        typeof value === "string" ? validator.escape(value) : value
       );
     }
   }
@@ -69,10 +69,12 @@ function sanitizeInteraction(interaction) {
   // For Button Interactions:
   // Buttons usually have a customId defined by your code, but if you ever incorporate dynamic data
   // or want to ensure the customId is safe, you might validate it. However, modifying it may break logic.
-  if (interaction.isButton() && typeof interaction.customId === 'string') {
+  if (interaction.isButton() && typeof interaction.customId === "string") {
     // Example: Log a warning if customId contains unexpected characters.
     if (!/^[\w-]+$/.test(interaction.customId)) {
-      logger.error(`Unexpected characters found in button customId: ${interaction.customId}`);
+      logger.error(
+        `Unexpected characters found in button customId: ${interaction.customId}`
+      );
       // You could also choose to sanitize, but that might interfere with your command matching.
     }
   }

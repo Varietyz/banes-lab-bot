@@ -405,3 +405,6 @@ package-lock.json
 *.sqlite-wal
 *.sqlite
 *.sqlite-shm
+
+allowedOrigins.js
+appCredentials.js
