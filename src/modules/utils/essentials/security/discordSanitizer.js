@@ -1,6 +1,6 @@
 // sanitizer.js
 const validator = require("validator");
-const logger = require("../essentials/logger");
+const logger = require("../logger");
 
 /**
  * Sanitize any user input in the interaction.

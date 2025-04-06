@@ -40,7 +40,7 @@ const initializeBot = async () => {
       logger.info("✅ Discord client logged in successfully.");
 
       // Now the client is logged in, and you can start interacting with it
-      server.listen(apiPort, () => {
+      server.listen(3001, () => {
         logger.info(`🌐 HTTPS/WebSocket server running on port ${apiPort}`);
         logger.info("✅ Socket.io instance initialized:", !!io);
       });

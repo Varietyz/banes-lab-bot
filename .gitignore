@@ -408,3 +408,8 @@ package-lock.json
 
 allowedOrigins.js
 appCredentials.js
+deploy.sh
+.git
+DEPLOY_VERSION.txt
+.gitignore
+src/assets/runescape_bold.ttf

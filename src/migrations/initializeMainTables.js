@@ -18,6 +18,7 @@ const initializeMainTables = async () => {
         username TEXT NOT NULL,
         email TEXT NOT NULL UNIQUE,
         password_hash TEXT NOT NULL,
+        ip_hash TEXT NOT NULL,
         created_at INTEGER DEFAULT (strftime('%s','now'))
       `,
       // Sessions table: tracks active login sessions
@@ -25,6 +26,7 @@ const initializeMainTables = async () => {
         session_id TEXT PRIMARY KEY,
         user_id TEXT NOT NULL,
         token TEXT NOT NULL UNIQUE,
+        ip_hash TEXT NOT NULL,
         created_at INTEGER DEFAULT (strftime('%s','now')),
         expires_at INTEGER,
         FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
@@ -41,16 +43,8 @@ const initializeMainTables = async () => {
         user_id TEXT PRIMARY KEY,
         email TEXT NOT NULL,
         channel_id TEXT NOT NULL,
+        ip_hash TEXT NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-      `,
-      messages_queue: `
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  user_id TEXT NOT NULL,
-  channel_id TEXT NOT NULL,
-  content TEXT NOT NULL,
-  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-  delivered BOOLEAN DEFAULT 0,
-  FOREIGN KEY (user_id) REFERENCES users(user_id)
       `,
     };
 

@@ -6,9 +6,15 @@ const db = require("../modules/utils/essentials/dbUtils");
 const logger = require("../modules/utils/essentials/logger");
 const { v4: uuidv4 } = require("uuid");
 const createDiscordChannelForUser = require("../modules/services/webUtils/createChannelForUser");
+const crypto = require("crypto");
 
 const router = express.Router();
 const SALT_ROUNDS = 10;
+
+// Hash the IP address for privacy
+function hashIP(ip) {
+  return crypto.createHash("sha256").update(ip).digest("hex");
+}
 
 // Handle OPTIONS request explicitly
 router.options("/login", (req, res) => {
@@ -18,6 +24,10 @@ router.options("/login", (req, res) => {
 router.post("/login", async (req, res) => {
   logger.debug("🔑 POST /api/login request received.");
   const { email, password } = req.body;
+  const ip = req.headers["x-forwarded-for"]?.split(",")[0].trim() || req.ip;
+
+  const hashedIP = hashIP(ip);
+
   if (!email || !password) {
     logger.warn("❌ Missing email or password.");
     return res
@@ -38,6 +48,24 @@ router.post("/login", async (req, res) => {
 
     // Auto-registration
     if (!result) {
+      const existingUser = await db.getOne(
+        "SELECT email FROM users WHERE ip_hash = ?",
+        [hashedIP]
+      );
+
+      if (existingUser) {
+        const maskedEmail = existingUser.email.replace(
+          /^(.{4})(.*)(@.*)$/,
+          (match, p1, p2, p3) => {
+            return p1 + "*".repeat(p2.length) + p3;
+          }
+        );
+
+        return res.status(400).json({
+          message: `You have already created an account: ${maskedEmail}`,
+        });
+      }
+
       isNewUser = true;
       logger.info(`🆕 Creating new user for email: ${email}`);
       const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
@@ -46,8 +74,8 @@ router.post("/login", async (req, res) => {
       // Log before inserting new user
       logger.debug(`Inserting new user with ID: ${userId} and email: ${email}`);
       await db.runQuery(
-        "INSERT INTO users (user_id, username, email, password_hash) VALUES (?, ?, ?, ?)",
-        [userId, email.split("@")[0], email, passwordHash]
+        "INSERT INTO users (user_id, username, email, password_hash, ip_hash) VALUES (?, ?, ?, ?, ?)",
+        [userId, email.split("@")[0], email, passwordHash, hashedIP]
       );
       logger.debug("User insertion complete, fetching newly created user");
       result = await db.getOne("SELECT * FROM users WHERE email = ?", [email]);
