@@ -25,7 +25,7 @@ function initializeDatabase() {
  * @param db
  */
 async function dropTables(db) {
-  const tables = ["users", "user_sessions", "user_profiles"];
+  const tables = [/*"users", "user_sessions", "user_profiles",*/ "smart_metrics"];
   try {
     for (const table of tables) {
       await new Promise((resolve, reject) => {

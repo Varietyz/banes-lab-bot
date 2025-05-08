@@ -413,3 +413,5 @@ deploy.sh
 DEPLOY_VERSION.txt
 .gitignore
 src/assets/runescape_bold.ttf
+src/src.zip
+.gitignore
